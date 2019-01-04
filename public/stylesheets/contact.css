@@ -100,16 +100,20 @@ body {
 
 
 @media (max-width: 768px){
+    .company-contact-list p {
+        overflow-wrap: normal;
+    }
     .contact-wrapper {
             /*padding: 50px 34px;*/
     }
     .form {
-        height: 1220px;
+        height: 1235px;
     }
 
     .headline {
         margin-top: 0px;
     }
+
 }
 
 
