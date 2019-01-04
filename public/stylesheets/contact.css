@@ -45,7 +45,7 @@ body {
 
 .company-contact-list .fas {
     padding: 13px 13px;
-    background-color: #edd864;
+    background-color: #ffe3b6;
     border-radius: 25px;
     font-size: 17px;
     padding-right: 15px;
@@ -91,8 +91,8 @@ body {
     padding: 8px 10px;
     float: right;
     color: #f1e0e0;
-    background-color: #363063;
-    border-color: #363063;
+    background-color: #182628;
+    border-color: #182628;
     -webkit-box-shadow: 0 8px 6px -6px #000;
     -moz-box-shadow: 0 8px 6px -6px #000;
     box-shadow: 0 8px 6px -6px #000;
