@@ -8,4 +8,19 @@ router.get('/', function(req, res, next) {
 router.get('/contact', function(req, res, next) {
   res.render('shop/contact', {layout: false});
 });
+router.get('/about', function(req, res, next) {
+  res.render('shop/about', {layout: false});
+});
+router.get('/gallery-sliding-doors', function(req, res, next) {
+  res.render('shop/gallery-sliding-doors', {layout: false});
+});
+router.get('/wardrobe-shower-doors', function(req, res, next) {
+  res.render('shop/wardrobe-shower-doors', {layout: false});
+});
+router.get('/pocket-dog-doors', function(req, res, next) {
+  res.render('shop/pocket-dog-doors', {layout: false});
+});
+router.get('/lock-handle-sliders', function(req, res, next) {
+  res.render('shop/lock-handle-sliders', {layout: false});
+});
 module.exports = router;

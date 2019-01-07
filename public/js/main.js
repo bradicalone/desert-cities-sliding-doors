@@ -22,7 +22,6 @@ var easeOut = function(progress){
 (function(){
 	var start;
 	var toggle = false;
-	var done = false;
 	
 	var getPosition = function(el, elWidth){
 		if(arguments.length === 1){
@@ -131,7 +130,7 @@ var easeOut = function(progress){
 				};
 					
 				//Keeps secondCall() from being ran over and over if hovered over same button		
-				if(done && toggle){
+				if(toggle){
 						
 					if( _(elemActive).classList.contains('opacity') ) return
 
@@ -171,6 +170,7 @@ var easeOut = function(progress){
 				function firstCall(){
 					if(toggle ) return;
 					toggle = true;
+
 					if(!_('dropdown-root').hasAttribute('style') ){
 						
 						rootX = getPosition( _('dropdown-root') ).x 
@@ -189,12 +189,11 @@ var easeOut = function(progress){
 					_('dropdown-root').style.width = compStyles.getPropertyValue('width');
 					_('dropdown-arrow').style.transform = 'translate3d('+ (arrowCurrentTransform - (-arrowDifference)  )+'px, 0, 0) rotate(45deg)';
 					_('dropdown-root').style.transform = 'translate3d('+ (currentTransform - (-difference)  ) +'px, 0, 100px)' + 'perspective(2000px) rotateX(-20deg)';
-					
 					currentTransform = parseInt( _( 'dropdown-root' ).style.transform.replace(/translate3d\(-?(\d+\.?\d{1}?)([,\d\w\)\s\-()]*)/gi,'$1') )
 					arrowCurrentTransform = parseInt( _( 'dropdown-arrow' ).style.transform.replace(/translate3d\((\d+\.?\d{1}?)([,\d\w\)\s\()]*)/gi,'$1') )
 
 					rootX = getPosition( _('dropdown-root') ).x
-					arrowX = getPosition( _('dropdown-arrow') ).x							
+					arrowX = getPosition( _('dropdown-arrow') ).x					
 
 					requestAnimationFrame(function(timestamp){
 						start = timestamp;
@@ -222,8 +221,6 @@ var easeOut = function(progress){
 						requestAnimationFrame(function(timestamp){
 							animateCardOnce(elemName,timestamp)
 						})
-					}else {
-						done = true;
 					}
 				}
 			};
@@ -237,8 +234,6 @@ var easeOut = function(progress){
 						toggle = false;
 						lastArrowTransform = parseInt( _( 'dropdown-arrow' ).style.transform.replace(/translate3d\((\d+\.?\d{1}?)([,\d\w\)\s\()]*)/gi,'$1') )
 						lastCardTransform = parseInt( _( 'dropdown-root' ).style.transform.replace(/translate3d\(-?(\d+\.?\d{1}?)([,.\d\w\)\s\-()]*)/gi,'$1') )
-						
-						console.log(_( 'dropdown-root' ).style.transform.replace(/translate3d\(-?(\d+\.?\d{1}?)([,.\d\w\)\s\-()]*)/gi,'$1'));
 					
 						requestAnimationFrame(function(timestamp){
 							start = timestamp;
