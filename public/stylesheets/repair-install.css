@@ -1,0 +1,72 @@
+.service {
+	padding: 50px 0;
+}
+
+.service h4 {
+	font-weight: 400;
+    font-size: 19px;
+  	padding-left: 5px;
+    color: #405877;
+}
+.service .card-info {
+	cursor: pointer;
+	min-height: 0;
+	margin: 10px 0px;
+	padding: 30px 20px 30px 120px;
+}
+
+.menu-arrow {
+	position: absolute;
+    right: 10%;
+    top: 40px;
+    font-size: 32px;
+}
+
+.service-info {
+	width: 90%;
+    border-radius: 4px;
+    background-color: aliceblue;
+    margin-top: 15px;
+    height: 0;
+    overflow: hidden;
+}
+
+.card-info p {
+	padding: 20px;
+}
+
+.gallery-section.container-fluid {
+    padding: 30px 15px;
+    display: flex;
+    align-items: center;
+    color: #1d1d5c;
+    font-family: Camphor,Open Sans,Segoe UI,sans-serif;
+    border-bottom: 2px solid #f6f9fc;
+}
+
+.header-content {
+    padding: 10px;
+    max-width: 506px;
+}
+
+.service-png {
+	width: 250px;
+	margin-left: -31px;
+	padding-right: 10px;
+}
+
+@media (max-width: 600px){
+	.service .card-info {
+		    padding: 30px 21px 30px 9px;
+	}
+
+	.service-info {
+		width: 100%;
+	}
+
+	.gallery-section {
+		display: contents !important;
+	}
+}
+
+

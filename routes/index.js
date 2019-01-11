@@ -23,4 +23,10 @@ router.get('/pocket-dog-doors', function(req, res, next) {
 router.get('/lock-handle-sliders', function(req, res, next) {
   res.render('shop/lock-handle-sliders', {layout: false});
 });
+router.get('/repair-services', function(req, res, next) {
+  res.render('shop/repair-services', {layout: false});
+});
+router.get('/install-services', function(req, res, next) {
+  res.render('shop/install-services', {layout: false});
+});
 module.exports = router;
