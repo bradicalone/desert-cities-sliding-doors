@@ -3,8 +3,6 @@
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-
 var _ = function(name){	
 	var elem = document.getElementsByClassName(name)
 	var classes = []
@@ -35,15 +33,7 @@ var easeOut = function(progress){
 			}
 		}
 		if(arguments.length === 2){
-			var rootX = el.getBoundingClientRect().x;
-			var rootHalfWidth = el.getBoundingClientRect().width / 2; //Gets location of Dropdown-root and adds current dropdown element / 2
-			var rootTotal = rootX + rootHalfWidth;
 
-			var elX = elWidth.getBoundingClientRect().x
-			var  halfWidth = elWidth.getBoundingClientRect().width / 2; //Gets location of Dropdown-root and adds current dropdown element / 2
-			var elTotal = elX + halfWidth;
-
-			return  elTotal - rootTotal;
 		} 
 	};
 
@@ -97,7 +87,7 @@ var easeOut = function(progress){
 				var compStyles = window.getComputedStyle(_( elemName ));
 				var elementWidth = compStyles.getPropertyValue('width').replace(/px/,"");
 				var elementHeight = compStyles.getPropertyValue('height').replace(/px/,"");
-
+				
 				var arrowWidth = window.getComputedStyle( _( 'dropdown-arrow' ) ).getPropertyValue('width').replace(/px/,"");
 				
 				for(var i = 0; i < navHoverElem.length; i++){
@@ -112,7 +102,7 @@ var easeOut = function(progress){
 				};
 				
 				function secondCall(timestamp){
-				
+					
 					var runtime = timestamp - startTwo;
 					var progress = easeOut(Math.min(runtime / 500, 1) );
 					var x = Math.min(runtime / 100, 1);
@@ -172,16 +162,15 @@ var easeOut = function(progress){
 					toggle = true;
 
 					if(!_('dropdown-root').hasAttribute('style') ){
-						
 						rootX = getPosition( _('dropdown-root') ).x 
-						arrowX = getPosition( _('dropdown-arrow') ).x
 						currentTransform = getPosition(e.target).pos - ( rootX +  elementWidth / 2  );
+						arrowX = getPosition( _('dropdown-arrow') ).x
 						arrowCurrentTransform = getPosition(e.target).pos - ( arrowX +  arrowWidth / 2  );
 					};
 					if(_('dropdown-root').hasAttribute('style') ){
-						rootX = getPosition( _('dropdown-root') ).x
-						currentTransform = parseInt( _( 'dropdown-root' ).style.transform.replace(/translate3d\(-?(\d+\.?\d{1}?)([,.\d\w\)\s\-()]*)/gi,'$1') )
+						rootX = getPosition( _('dropdown-root') ).x + 20  //20 to make up for the rotateX
 						difference = getPosition(e.target).pos - (rootX +  elementWidth / 2  )
+						currentTransform = parseInt( _( 'dropdown-root' ).style.transform.replace(/translate3d\(-?(\d+\.?\d{1}?)([,.\d\w\)\s\-()]*)/gi,'$1') )
 						arrowDifference = getPosition(e.target).pos - ( arrowX +  arrowWidth / 2  )
 					};
 
@@ -192,8 +181,8 @@ var easeOut = function(progress){
 					currentTransform = parseInt( _( 'dropdown-root' ).style.transform.replace(/translate3d\(-?(\d+\.?\d{1}?)([,\d\w\)\s\-()]*)/gi,'$1') )
 					arrowCurrentTransform = parseInt( _( 'dropdown-arrow' ).style.transform.replace(/translate3d\((\d+\.?\d{1}?)([,\d\w\)\s\()]*)/gi,'$1') )
 
-					rootX = getPosition( _('dropdown-root') ).x
-					arrowX = getPosition( _('dropdown-arrow') ).x					
+					// rootX = getPosition( _('dropdown-root') ).x 
+					arrowX = getPosition( _('dropdown-arrow') ).x			
 
 					requestAnimationFrame(function(timestamp){
 						start = timestamp;
@@ -203,6 +192,7 @@ var easeOut = function(progress){
 				firstCall();	
 
 				function animateCardOnce(elemName,timestamp){
+				
 					_('body-wrapper').style.display = 'block';
 					_('dropdown-root').style.zIndex = 1;
 				
@@ -210,9 +200,10 @@ var easeOut = function(progress){
 					var progress = Math.min(runtime / 400, 1) 
 					var ease = easeOut(progress)
 
-					_('dropdown-arrow').style.opacity = 1 * progress;
+					
 					_('dropdown-root').style.opacity = 1 * ease;
 					_('dropdown-root').style.transform = 'translate3d('+ currentTransform +'px, 0, 100px)' + 'perspective(2000px) rotateX('+ (-20 + (20 * progress) ) +'deg)';
+					_('dropdown-arrow').style.opacity = 1 * progress;
 					_('dropdown-arrow').style.transform = 'translate3d('+ arrowCurrentTransform +'px,' + (-6 +(6* progress) ) +'px,0) rotate(45deg)';
 
 					if(elemActive === 'services') _('dropdown-arrow').style.transform = 'translate3d('+ arrowCurrentTransform +'px,' + (-20 +(20* progress) ) +'px,0) rotate(45deg)';
@@ -521,8 +512,14 @@ window.onload = function(){
 	}, false);
 };
 
-
-
+function form(){
+	console.log(document.querySelector('#contact-form'));
+	document.querySelector('#contact-form').addEventListener('submit', function(e){
+		e.preventDefault()
+		console.log(this);
+	})
+}
+form()
 
 
 
