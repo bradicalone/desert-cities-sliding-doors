@@ -1,8 +1,18 @@
+body, html{
+	background: none;
+}
+
 .devider {
 	left: 50%;
     height: 300px;
     transform: translate(-50%);
     position: absolute;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 
 .splitter {

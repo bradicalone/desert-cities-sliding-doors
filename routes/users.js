@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./../models/user');
-const mongoose = require('./../db/mongoose');
+// const mongoose = require('./../db/mongoose');
 const async = require('async');
 const nodemailer = require("nodemailer");
 
