@@ -5,9 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('shop/index', {layout: false});
 });
-// router.get('/contact', function(req, res, next) {
-//   res.render('shop/contact', {layout: false});
-// });
+
 router.get('/about', function(req, res, next) {
   res.render('shop/about', {layout: false});
 });

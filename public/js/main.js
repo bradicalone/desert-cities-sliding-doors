@@ -512,14 +512,14 @@ window.onload = function(){
 	}, false);
 };
 
-function form(){
-	console.log(document.querySelector('#contact-form'));
-	document.querySelector('#contact-form').addEventListener('submit', function(e){
-		e.preventDefault()
-		console.log(this);
-	})
-}
-form()
+// function form(){
+// 	console.log(document.querySelector('#contact-form'));
+// 	document.querySelector('#contact-form').addEventListener('submit', function(e){
+// 		e.preventDefault()
+// 		console.log(this);
+// 	})
+// }
+// form()
 
 
 

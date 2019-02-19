@@ -1,5 +1,4 @@
-// var env = process.env.NODE_ENV || 'development';
-// var mongoose = require('./db/mongoose');
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,7 +7,10 @@ var logger = require('morgan');
 var expressHbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
-var session = require('express-session')
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -28,20 +30,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Express session middleware
+app.use(expressValidator())
+
+//Express session middleware memmory storage
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
+   	secret: 'pually',
+   	saveUninitialized: true,
+   	resave: true,
+   	cookie: { secure: true },
+   	store: new MongoStore({
+        url: process.env.MONGODB_URI
+    })
+}));
 
 //Express messages Middleware
-app.use(require('connect-flash')());
+app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
