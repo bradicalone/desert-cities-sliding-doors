@@ -10,11 +10,8 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-
 var app = express();
 
 // view engine setup
@@ -32,12 +29,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(expressValidator())
 
+
+
 //Express session middleware memmory storage
 app.use(session({
-   	secret: 'pually',
-   	saveUninitialized: true,
-   	resave: true,
-   	cookie: { secure: true },
+	name: process.env.SESS_NAME,
+   	secret: process.env.SESS_SECRET,
+   	saveUninitialized: false,
+   	resave: false,
+   	cookie: { 
+   		maxAge: parseInt(process.env.SESS_TIME),
+   		// secure: !process.env.IN_PROD
+   		secure: true
+   	},
    	store: new MongoStore({
         url: process.env.MONGODB_URI
     })

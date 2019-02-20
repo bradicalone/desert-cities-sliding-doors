@@ -42,6 +42,8 @@ router.post('/contact', function(req, res, next){
 		
 			var smtpTransport = nodemailer.createTransport({
 				service: 'Gmail',
+				host: 'smtp.gmail.com',
+				secure: true,
 				auth: {
 					user: 'sliding.solutions.web@gmail.com',
 					pass: 'Sliding109'
