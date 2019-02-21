@@ -51,7 +51,7 @@ router.post('/contact', function(req, res, next){
 			});
 			var mailOptions = {
 				from: req.body.name,
-				to: 'sliding.solutions.web@gmail.com, b.vanderbush@yahoo.com',
+				to: 'sliding.solutions.web@gmail.com, officemanager.slidingsolutions@gmail.com',
 				subject: 'Desert Contact Form',
 				html: mailerOutput
 			};
