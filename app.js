@@ -40,7 +40,7 @@ app.use(session({
    	cookie: { 
    		maxAge: parseInt(process.env.SESS_TIME),
    		// secure: !process.env.IN_PROD
-   		secure: true
+   		secure: false
    	},
    	store: new MongoStore({
         url: process.env.MONGODB_URI
