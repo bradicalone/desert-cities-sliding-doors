@@ -32,9 +32,6 @@ var easeOut = function(progress){
 				height: el.getBoundingClientRect().height
 			}
 		}
-		if(arguments.length === 2){
-
-		} 
 	};
 
 	var hover = function(){
@@ -298,7 +295,9 @@ var easeOut = function(progress){
 
 	
 	function sideNav(){	
-		var glyphicon = document.querySelectorAll('.glyphicon, .back');
+		var open = document.querySelector('.glyphicon-menu-hamburger')
+		var navTwo = document.getElementsByTagName('nav')[1];
+		console.log(open === document.querySelector('.glyphicon-menu-hamburger'));
 		var dist;
 		var currentPos;
 
@@ -318,31 +317,38 @@ var easeOut = function(progress){
 				})
 			}
 		}
-		
-		for(var i = 0; i < glyphicon.length; i++){
-			glyphicon[i].addEventListener('click', function(e){
-				if(window.innerWidth > 910) return
-
-				currentPos = _('navbar').getBoundingClientRect().x
-
-				if(this === _('navbar').childNodes[1] || this.classList[0] == 'back'){
-					_('navbar').childNodes[1].style.display = "none";
-					_('navbar').childNodes[3].style.display = "block";
-					dist = -330;
-					//Closes any submenu items still open
-					menu.closeAll()
-				}
-				if(this === _('navbar').childNodes[3] ){
-					_('navbar').childNodes[3].style.display = "none";
-					_('navbar').childNodes[1].style.display = "block";
-					dist = 330;
-				}
-				requestAnimationFrame(function(timestamp){
-					start = timestamp
-					animateNav(currentPos, timestamp)
-				})
+		var runAnimation = function(){
+			requestAnimationFrame(function(timestamp){
+				start = timestamp
+				animateNav(currentPos, timestamp)
 			})
 		}
+		
+		
+		if(window.innerWidth > 910) return
+		document.addEventListener('click', function(e){
+			e.stopPropagation()
+			console.log(e.target);
+			currentPos = _('navbar').getBoundingClientRect().x;
+	
+			//CLOSE MENU
+			if( !navTwo.contains(e.target) && open.style.display === "none"){
+				dist = -330;
+				runAnimation()
+				menu.closeAll()
+				_('navbar').childNodes[1].style.display = "none";
+				_('navbar').childNodes[3].style.display = "block";
+				
+			}
+			//OPEN MENU
+			if(e.target === open){
+				console.log('true');
+				_('navbar').childNodes[3].style.display = "none";
+				_('navbar').childNodes[1].style.display = "block";
+				dist = 330;
+				runAnimation()
+			}
+		})
 	}
 	sideNav()
 

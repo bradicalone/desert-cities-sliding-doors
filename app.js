@@ -9,6 +9,8 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+const { body } = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -26,9 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(expressValidator())
-
 
 
 //Express session middleware memmory storage
@@ -53,7 +53,11 @@ app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
+function validatePhoto(req, res, next) {
+	body('message').trim().escape().escape();
 
+	next()
+}
 
 
 app.use('/', indexRouter);
@@ -67,6 +71,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
