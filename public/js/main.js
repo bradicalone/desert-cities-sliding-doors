@@ -328,7 +328,6 @@ var easeOut = function(progress){
 		if(window.innerWidth > 910) return
 		document.addEventListener('click', function(e){
 			e.stopPropagation()
-			console.log(e.target);
 			currentPos = _('navbar').getBoundingClientRect().x;
 	
 			//CLOSE MENU
@@ -518,14 +517,79 @@ window.onload = function(){
 	}, false);
 };
 
-// function form(){
-// 	console.log(document.querySelector('#contact-form'));
-// 	document.querySelector('#contact-form').addEventListener('submit', function(e){
-// 		e.preventDefault()
-// 		console.log(this);
-// 	})
-// }
-// form()
+function formValidation(){
+
+
+	var error = document.getElementsByClassName('error')[0];
+	
+	_('inputMessage').addEventListener('keyup', function(e){
+		var str = this.value.toLowerCase()
+
+		var regex = /[<>}{\(\)]/gi
+		var test = regex.test(str)
+		if(test) {
+		
+			error.innerHTML = "Please don\'t use any special characters: <, >, }, {, (, )"
+			error.className = "error active";
+		}
+		else{
+		
+			error.innerHTML = ""
+			error.className = "error";
+		}
+	})
+	document.querySelector('#contact-form').addEventListener('submit', function(e){
+		var active = document.getElementsByClassName('error')[0].className.split(' ')[1];
+
+
+		//Keyword Validation
+		var regex = /[<>/{}()](http)|(girl)|(grl)|(fuck)|(clit)|(whore)|(slut)|(xxx)|(viagra)|(sexy)|(sxy)|(?:169\.254|192\.168)/gi;
+		var str = _('inputMessage').value
+		
+		var test = regex.test(str)
+		
+		if(test || active) e.preventDefault()
+	})
+}
+
+try{
+	formValidation()
+
+}catch(e){
+	console.log("Don't worry it's on a differnt page: ",e.message);
+}
+
+
+function navOpacity(){
+
+
+	function offSet(){
+		var opacity = window.scrollY *.001
+
+		if(window.scrollY > 0 && opacity < .5){
+		
+			_("navbar").style.backgroundColor = "rgba(0,0,0," + opacity +")";
+			_("navbar").style.color = "#fff"
+		}else if(window.scrollY === 0) _("navbar").style.color = "#000"
+	}
+	window.addEventListener('scroll', function(e){
+		offSet()
+	})
+}
+if(window.innerWidth < 768) navOpacity()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

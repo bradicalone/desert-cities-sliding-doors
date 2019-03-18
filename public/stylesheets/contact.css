@@ -32,7 +32,7 @@ body {
 .company-contact-list li {
     display: flex;
     align-items: center;
-    padding: 9px 0;
+    padding: 13px 0;
     color: #32325d;
 }
 
@@ -71,13 +71,24 @@ body {
 }
 
 .contact-wrapper  {
-    padding-top: 72px;
+    padding-top: 25px;
 }
+
+.company-info {
+    border-radius: 4px;
+    padding: 25px 0 25px 12px;
+    /* margin-top: 45px; */
+    background-color: #fff;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 50px 100px rgba(50,50,93,.1), 0 15px 35px rgba(50,50,93,.15), 0 5px 15px rgba(0,0,0,.1);
+    box-shadow: 0 50px 100px rgba(50,50,93,.1), 0 15px 35px rgba(50,50,93,.15), 0 5px 15px rgba(0,0,0,.1);
+}
+
 .contact-wrapper h2 {
     text-align: center;
     white-space: nowrap;
     color: #32325d;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     font-size: 27px;
 }
 
@@ -98,16 +109,63 @@ body {
     box-shadow: 0 8px 6px -6px #000;
 }
 
+.error {
+  width: 100%;
+  padding: 0;
+ 
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+ 
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.error.active {
+   border-radius: 5px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 15px;
+    padding: 10px;
+    width: 70%;
+    font-size: 14px;
+}
+
+/*.form .row {
+    position: relative;
+}
+
+.form .col-md-4 {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}*/
+@media (min-width: 991px){
+    .contact-wrapper {
+        width: 360px;
+    }
+
+}
+@media (max-width: 991px){
+    .contact-wrapper {
+        margin: 0 auto;
+        max-width: 643px;
+        width: 100%;
+    }
+}
 
 @media (max-width: 768px){
     .company-contact-list p {
         overflow-wrap: normal;
     }
-    .contact-wrapper {
-            /*padding: 50px 34px;*/
-    }
+
+    .contact-wrapper h2 {
+        padding-top: 50px;
+    }    
+
     .form {
-        height: 1235px;
+        height: 1366px;
     }
 
     .headline {

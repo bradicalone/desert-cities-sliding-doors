@@ -290,6 +290,8 @@ a, a:hover, a:active, a:visited, a:focus {
 }
 
 .navbar {
+    height: 80px;
+    background-color: rgba(0,0,0,.0);
     top: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -299,9 +301,12 @@ a, a:hover, a:active, a:visited, a:focus {
     position: absolute;
     max-width: 1300px;
     background-color: transparent;
+    border-radius: 0;
     border: none;
     will-change: transform;
+
 }
+
 
 
 nav .btn {
@@ -631,6 +636,38 @@ nav .call .fa-phone {
     color: #385052;
 }
 
+.employee {
+    overflow: hidden;
+    max-height: 450px;
+    position: relative;
+    margin-bottom: 75px;
+}
+
+.employee-img {
+    min-width: 1100px;
+    width: 100%;
+}
+
+.checkmark {
+    width: 385px;
+    top: 50%;
+    left: 5%;
+    transform: translate(0, -50%);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    color: #000;
+}
+
+.checkmark > a {
+    justify-content: space-around;
+    display: flex;
+    color: #385052;
+    margin-top: 50px;
+    font-size: 19px;
+    align-items: baseline;
+    width: 315px;
+}
 
 /*****  Deals Element  *****/
 .deals {
@@ -644,7 +681,7 @@ nav .call .fa-phone {
 }
 
 .left-box, .right-box {
-    background-color: #fff;
+    background-color: #fefdf8;
 	-webkit-box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
     box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
     position: relative;
@@ -827,7 +864,7 @@ nav .call .fa-phone {
     justify-content: center;
     overflow: hidden;
     padding: 40px 20px 40px 120px;
-    background-color: #fff;
+    background-color: #fffcf0;
     border-radius: 4px;
     -webkit-box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
     box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
@@ -1143,9 +1180,34 @@ form input {
 	}
 }
 @media (max-width: 768px){
+    .headline-header {
+       
+        font-size: 34px;
+    }
+    .headline-text {
+        font-size: 16px;
+    }
+
+    .employee {
+        overflow: hidden;
+    }
+
+    .checkmark {
+        width: 350px;
+    }
+
+    .employee-img {
+      opacity: .5;
+    left: -135px;
+    position: relative;
+    min-width: 867px;
+    width: 100%;
+    }
+
     .img-small-screen {
         display: block;
     }
+
     .img-large-screen {
         display: none;
     }
@@ -1155,3 +1217,18 @@ form input {
         display: none;
     }
 }
+
+@media (min-width: 1800px){
+    .employee {
+        overflow: scroll;
+    }
+}
+
+
+
+
+
+
+
+
+
