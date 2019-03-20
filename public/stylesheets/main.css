@@ -637,19 +637,64 @@ nav .call .fa-phone {
 }
 
 .employee {
-    overflow: hidden;
-    max-height: 450px;
-    position: relative;
+    height: 450px;
     margin-bottom: 75px;
 }
 
+.employee-container {
+    width: 100%;
+    height: 450px;
+    max-height: 450px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.img-active {
+    z-index: 1;
+    animation: noOpac forwards 3s;
+}
+@keyframes noOpac {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.img-hide {
+    z-index: 0;
+    animation: opac forwards 1s;
+}
+
+@keyframes opac {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+
+
 .employee-img {
+    position: absolute;
     min-width: 1100px;
     width: 100%;
 }
 
+
+.mybutton {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    background: black;
+}
+
 .checkmark {
-    width: 385px;
+    width: 540px;
     top: 50%;
     left: 5%;
     transform: translate(0, -50%);
@@ -664,9 +709,27 @@ nav .call .fa-phone {
     display: flex;
     color: #385052;
     margin-top: 50px;
-    font-size: 19px;
+    font-size: 20px;
     align-items: baseline;
-    width: 315px;
+    width: 335px;
+}
+
+.checkmark h1 {
+    font-family: Camphor,Open Sans,Segoe UI,sans-serif;
+    font-size: 37px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "pnum";
+    font-feature-settings: "pnum";
+    font-variant-numeric: proportional-nums;
+}
+
+.checkmark i {
+    font-weight: 500;
+    font-size: 23px;
+    padding-right: 10px;
 }
 
 /*****  Deals Element  *****/
@@ -830,6 +893,7 @@ nav .call .fa-phone {
 }
 
 .background-img {
+    overflow: hidden;
     position: relative;
 }
 
@@ -1180,6 +1244,7 @@ form input {
 	}
 }
 @media (max-width: 768px){
+
     .headline-header {
        
         font-size: 34px;
@@ -1193,15 +1258,15 @@ form input {
     }
 
     .checkmark {
+        top: 31%;
         width: 350px;
     }
 
     .employee-img {
-      opacity: .5;
-    left: -135px;
-    position: relative;
-    min-width: 867px;
-    width: 100%;
+        left: -135px;
+        position: relative;
+        min-width: 867px;
+        width: 100%;
     }
 
     .img-small-screen {
@@ -1218,8 +1283,8 @@ form input {
     }
 }
 
-@media (min-width: 1800px){
-    .employee {
+@media (min-width: 1900px){
+    .employee-container {
         overflow: scroll;
     }
 }

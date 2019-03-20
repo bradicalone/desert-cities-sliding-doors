@@ -90,7 +90,7 @@ router.post('/contact', function(req, res, next){
 			res.render('users/contact', {layout: false, success: true});
 
 	  	}, (e) => {
-	  		res.send('An error accoured saving user: ' + e)  
+	  		res.send('An error occurred saving user: ' + e)  
 	  	})
     }
 	

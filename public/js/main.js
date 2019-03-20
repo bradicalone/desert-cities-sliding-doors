@@ -543,12 +543,14 @@ function formValidation(){
 
 
 		//Keyword Validation
-		var regex = /[<>/{}()](http)|(girl)|(grl)|(fuck)|(clit)|(whore)|(slut)|(xxx)|(viagra)|(sexy)|(sxy)|(?:169\.254|192\.168)/gi;
+		var regex = /[<>/{}()]|(http)|(www\.)|(girl)|(grl)|(fuck)|(clit)|(whore)|(slut)|(xxx)|(viagra)|(sexy)|(sxy)|(?:169\.254|192\.168)/gi;
 		var str = _('inputMessage').value
 		
 		var test = regex.test(str)
-		
-		if(test || active) e.preventDefault()
+		console.log(test);
+		e.preventDefault()
+		if(test || active) console.log(true);
+
 	})
 }
 
@@ -561,7 +563,7 @@ try{
 
 
 function navOpacity(){
-
+	console.log('hey');
 
 	function offSet(){
 		var opacity = window.scrollY *.001
@@ -575,12 +577,35 @@ function navOpacity(){
 	window.addEventListener('scroll', function(e){
 		offSet()
 	})
+};
+if(window.innerWidth < 768) navOpacity();
+
+
+function pictureSlider(){
+	var image = []
+	var img_container = document.querySelectorAll('.employee-container');
+	
+	for(var i = 0; i < img_container.length; i++){
+	
+		image.push(img_container[i]);
+	
+	}
+	function drawImage(timestamp){
+
+		var removed = image.pop()
+		image.unshift(removed)
+		image[2].className = "employee-container img-hide"
+		image[1].className = "employee-container img-active"
+		image[0].className = "employee-container img-hide"
+
+	}
+	window.setInterval(function(){
+			drawImage()
+	},3000)
 }
-if(window.innerWidth < 768) navOpacity()
-
-
-
-
+if(document.location.pathname === '/'){
+	pictureSlider()
+}
 
 
 
