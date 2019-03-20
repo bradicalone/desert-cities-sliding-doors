@@ -601,7 +601,7 @@ function pictureSlider(){
 	}
 	window.setInterval(function(){
 			drawImage()
-	},3000)
+	},5000)
 }
 if(document.location.pathname === '/'){
 	pictureSlider()
